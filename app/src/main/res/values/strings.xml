@@ -2,4 +2,10 @@
     <string name="app_name">Movie Catalogue</string>
     <string name="title_movies">MOVIES</string>
     <string name="title_tvshows">TV SHOWS</string>
+    <string name="listimage">listImage</string>
+    <string name="date">date</string>
+    <string name="frozen_ii">Frozen II</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

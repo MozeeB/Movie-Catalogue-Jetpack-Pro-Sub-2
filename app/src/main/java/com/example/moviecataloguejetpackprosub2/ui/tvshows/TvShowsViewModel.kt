@@ -1,10 +1,10 @@
-package com.example.moviecataloguejetpackprosub2.ui.dashboard
+package com.example.moviecataloguejetpackprosub2.ui.tvshows
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class TvShowsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"
