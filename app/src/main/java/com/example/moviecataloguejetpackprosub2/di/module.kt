@@ -1,9 +1,20 @@
 package com.example.moviecataloguejetpackprosub2.di
 
+import com.example.moviecataloguejetpackprosub2.data.mapper.DetailMovieMapper
+import com.example.moviecataloguejetpackprosub2.data.mapper.DetailTvShowMapper
+import com.example.moviecataloguejetpackprosub2.data.mapper.MoviesMapper
+import com.example.moviecataloguejetpackprosub2.data.mapper.TvShowsMapper
+import com.example.moviecataloguejetpackprosub2.data.repository.*
 import com.example.moviecataloguejetpackprosub2.data.service.GlobalInterceptor
+import com.example.moviecataloguejetpackprosub2.data.service.GlobalService
+import com.example.moviecataloguejetpackprosub2.helper.MOVIE
+import com.example.moviecataloguejetpackprosub2.ui.detail.DetailVM
+import com.example.moviecataloguejetpackprosub2.ui.movies.MoviesViewModel
+import com.example.moviecataloguejetpackprosub2.ui.tvshows.TvShowsViewModel
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -12,7 +23,9 @@ import java.util.concurrent.TimeUnit
 
 val appModule = module {
 
-
+    single { GlobalInterceptor() }
+    single { createOkHttpClient(get()) }
+    single { createWebService<GlobalService>(get(), MOVIE.BASE_URL) }
 
 }
 
@@ -23,10 +36,20 @@ val dataModule = module {
     //db dao
 
     //repository
+    single { MoviesRepositoryImpl(get(), get()) as MoviesRepository }
+    single { TvShowsRepositoryImpl(get(), get()) as TvShowsRepository }
+    single { DetailRepositoryImpl(get(), get(), get()) as DetailRepository }
 
     //mapper
+    single { MoviesMapper() }
+    single { TvShowsMapper() }
+    single { DetailMovieMapper() }
+    single { DetailTvShowMapper() }
 
     //viewmodel
+    viewModel { MoviesViewModel(get()) }
+    viewModel { TvShowsViewModel(get()) }
+    viewModel { DetailVM(get()) }
 
 }
 fun createOkHttpClient(interceptor: GlobalInterceptor): OkHttpClient {

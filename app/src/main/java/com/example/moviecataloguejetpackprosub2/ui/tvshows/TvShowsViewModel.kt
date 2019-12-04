@@ -1,13 +1,31 @@
 package com.example.moviecataloguejetpackprosub2.ui.tvshows
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.moviecataloguejetpackprosub2.data.repository.TvShowsRepository
+import com.example.moviecataloguejetpackprosub2.domain.TvShowDomain
+import com.example.moviecataloguejetpackprosub2.helper.RxUtils
+import com.example.moviecataloguejetpackprosub2.ui.base.BaseViewModel
 
-class TvShowsViewModel : ViewModel() {
+sealed class TvShowsState
+data class ErrorState(var msg:String?) : TvShowsState()
+data class TvShowDataLoaded(val tvShowDomain: List<TvShowDomain>) : TvShowsState()
+class TvShowsViewModel (val repository: TvShowsRepository) : BaseViewModel(){
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    val tvShowsState = MutableLiveData<TvShowsState>()
+
+    fun getTvShows(apiString: String, language:String, shortBy:String){
+        compositeDisposable.add(
+            repository.getTvShows(apiString, language, shortBy)
+                .compose(RxUtils.applySingleAsync())
+                .subscribe({ result ->
+                    if (result.isNotEmpty()){
+                        tvShowsState.value = TvShowDataLoaded(result)
+                    }
+                }, this::onError)
+        )
     }
-    val text: LiveData<String> = _text
+    override fun onError(error: Throwable) {
+        tvShowsState.value = ErrorState(error.localizedMessage)
+    }
+
 }

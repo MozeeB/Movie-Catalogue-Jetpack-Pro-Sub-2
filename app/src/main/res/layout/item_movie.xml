@@ -52,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:textColor="@android:color/black"
                 android:text="@string/frozen_ii"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"

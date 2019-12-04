@@ -4,28 +4,56 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moviecataloguejetpackprosub2.BuildConfig
 import com.example.moviecataloguejetpackprosub2.R
+import com.example.moviecataloguejetpackprosub2.helper.MOVIE
+import com.example.moviecataloguejetpackprosub2.helper.view.TvShowsItemView
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.fragment_tvshows.*
+import org.koin.android.ext.android.inject
 
 class TvShowsFragment : Fragment() {
 
-    private lateinit var tvShowsViewModel: TvShowsViewModel
+    private val vm:TvShowsViewModel by inject()
+
+    private val adapterTvShows = GroupAdapter<ViewHolder>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        tvShowsViewModel =
-            ViewModelProviders.of(this).get(TvShowsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_tvshows, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        tvShowsViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
-        return root
+        return inflater.inflate(R.layout.fragment_tvshows, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        vm.tvShowsState.observe(this, startObserver)
+        vm.getTvShows(BuildConfig.API_KEY, MOVIE.LANG, MOVIE.SORT_BY)
+
+        tvshowsFragmentRV.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = adapterTvShows
+        }
+    }
+
+
+    private val startObserver = Observer<TvShowsState>{ tvShowsState ->
+        when(tvShowsState){
+            is TvShowDataLoaded ->{
+                adapterTvShows.clear()
+                tvShowsState.tvShowDomain.map {
+                    adapterTvShows.add(TvShowsItemView(it))
+                }
+            }
+            is ErrorState ->{
+
+            }
+        }
     }
 }
