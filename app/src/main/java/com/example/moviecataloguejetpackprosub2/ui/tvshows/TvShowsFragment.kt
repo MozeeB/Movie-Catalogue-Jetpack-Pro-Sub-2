@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moviecataloguejetpackprosub2.BuildConfig
 import com.example.moviecataloguejetpackprosub2.R
-import com.example.moviecataloguejetpackprosub2.helper.MOVIE
 import com.example.moviecataloguejetpackprosub2.helper.view.TvShowsItemView
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
@@ -34,7 +32,7 @@ class TvShowsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         vm.tvShowsState.observe(this, startObserver)
-        vm.getTvShows(BuildConfig.API_KEY, MOVIE.LANG, MOVIE.SORT_BY)
+        vm.getTvShows()
 
         tvshowsFragmentRV.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

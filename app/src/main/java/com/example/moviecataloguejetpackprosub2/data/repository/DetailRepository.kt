@@ -6,7 +6,7 @@ import io.reactivex.Single
 
 interface DetailRepository {
 
-    fun getDetailMovies(apiKey:String, language:String, shortBy:String) : Single<DetailMovieDomain>
-    fun getDetailTvShows(apiKey:String, language:String, shortBy:String) : Single<DetailTvShowDomain>
+    fun getDetailMovies(id:String, language:String, shortBy:String) : Single<DetailMovieDomain>
+    fun getDetailTvShows(id:String, language:String, shortBy:String) : Single<DetailTvShowDomain>
 
 }

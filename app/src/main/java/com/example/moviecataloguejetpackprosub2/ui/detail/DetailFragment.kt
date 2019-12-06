@@ -40,9 +40,9 @@ class DetailFragment : Fragment() {
         val idTvShow = this.activity?.intent?.extras?.get("idTvShow")
 
         if (idMovie != null){
-            vm.getDetailMovies(idMovie.toString(), BuildConfig.API_KEY, MOVIE.LANG)
+            vm.getDetailMovies(idMovie.toString())
         }else if (idTvShow != null){
-            vm.getDetailTvShows(idTvShow.toString(), BuildConfig.API_KEY, MOVIE.LANG)
+            vm.getDetailTvShows(idTvShow.toString())
 
         }
 

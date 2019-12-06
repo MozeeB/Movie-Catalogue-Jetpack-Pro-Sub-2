@@ -13,21 +13,21 @@ class DetailRepositoryImpl(
     private val detailTvShowMapper: DetailTvShowMapper
 ) : DetailRepository {
     override fun getDetailMovies(
-        apiKey: String,
+        id: String,
         language: String,
         shortBy: String
     ): Single<DetailMovieDomain> {
-        return service.getDetailMovies(apiKey, language, shortBy).map {
+        return service.getDetailMovies(id, language, shortBy).map {
             detailMovieMapper.mapToDomain(it)
         }
     }
 
     override fun getDetailTvShows(
-        apiKey: String,
+        id: String,
         language: String,
         shortBy: String
     ): Single<DetailTvShowDomain> {
-        return service.getDetailTvShows(apiKey, language, shortBy).map {
+        return service.getDetailTvShows(id, language, shortBy).map {
             detailTvShowMapper.mapToDomain(it)
         }
     }

@@ -1,9 +1,12 @@
 package com.example.moviecataloguejetpackprosub2.ui.detail
 
 import androidx.lifecycle.MutableLiveData
+import com.example.moviecataloguejetpackprosub2.BuildConfig
 import com.example.moviecataloguejetpackprosub2.data.repository.DetailRepository
 import com.example.moviecataloguejetpackprosub2.domain.DetailMovieDomain
 import com.example.moviecataloguejetpackprosub2.domain.DetailTvShowDomain
+import com.example.moviecataloguejetpackprosub2.helper.EspressoIdlingResource
+import com.example.moviecataloguejetpackprosub2.helper.MOVIE
 import com.example.moviecataloguejetpackprosub2.helper.RxUtils
 import com.example.moviecataloguejetpackprosub2.ui.base.BaseViewModel
 
@@ -15,21 +18,27 @@ class DetailVM (val repository: DetailRepository) : BaseViewModel(){
 
     val detailState = MutableLiveData<DetailState>()
 
-    fun getDetailMovies(apiKey:String, language:String, shortBy:String){
+    fun getDetailMovies(id:String){
+        EspressoIdlingResource.increment()
         compositeDisposable.add(
-            repository.getDetailMovies(apiKey, language, shortBy)
+            repository.getDetailMovies(id, BuildConfig.API_KEY, MOVIE.LANG)
                 .compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     detailState.value = DetailMoviesDataLoaded(result)
+                    EspressoIdlingResource.decrement()
+
                 }, this::onError)
         )
     }
-    fun getDetailTvShows(apiKey:String, language:String, shortBy:String){
+    fun getDetailTvShows(id:String){
+        EspressoIdlingResource.increment()
         compositeDisposable.add(
-            repository.getDetailTvShows(apiKey, language, shortBy)
+            repository.getDetailTvShows(id, BuildConfig.API_KEY, MOVIE.LANG)
                 .compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     detailState.value = DetailTvShowDataLoaded(result)
+                    EspressoIdlingResource.decrement()
+
                 }, this::onError)
         )
     }
