@@ -6,6 +6,7 @@ import com.example.moviecataloguejetpackprosub2.domain.DetailTvShowDomain
 class DetailTvShowMapper : BaseMapper<DetailTvShowModel, DetailTvShowDomain> {
     override fun mapToDomain(model: DetailTvShowModel): DetailTvShowDomain {
         return DetailTvShowDomain(
+            model.id,
             model.backdrop_path,
             model.first_air_date,
             model.original_name,
@@ -17,6 +18,7 @@ class DetailTvShowMapper : BaseMapper<DetailTvShowModel, DetailTvShowDomain> {
 
     override fun mapToModel(domain: DetailTvShowDomain): DetailTvShowModel {
         return DetailTvShowModel(
+            domain.id,
             domain.backdrop_path,
             domain.first_air_date,
             domain.original_name,

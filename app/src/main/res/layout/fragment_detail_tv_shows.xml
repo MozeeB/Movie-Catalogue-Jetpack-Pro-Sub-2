@@ -4,25 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail.DetailFragment">
+    tools:context=".ui.detail.movies.DetailMoviesFragment">
 
     <ImageView
         android:id="@+id/backMovieDetailFragmentIV"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_200sdp"
         android:background="@color/colorPrimaryDark"
+        android:contentDescription="@string/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
+        android:layout_height="@dimen/_40sdp"
         android:background="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backMovieDetailFragmentIV" />
+
+    <ImageView
+        android:id="@+id/backFragmentDetailIV"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:contentDescription="@string/back"
+        android:src="@drawable/ic_arrow_back_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/favLoveTvShowsFragmentDetailIB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/favLoveTvShowsFragmentDetailIB"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:background="@drawable/ic_heart_1"
+        android:contentDescription="@string/love"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/posterDetailFragmentIV"
@@ -32,6 +59,7 @@
         android:layout_marginLeft="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_70sdp"
         android:background="@color/colorPrimary"
+        android:contentDescription="@string/poster"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,12 +68,12 @@
         android:id="@+id/descriptionDetailFragmentTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/description"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/_18ssp"
         android:background="@color/colorPrimary"
         android:padding="@dimen/_10sdp"
+        android:text="@string/description"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_18ssp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -55,8 +83,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_10sdp"
-        android:textSize="@dimen/_14ssp"
         android:text="Set after the fall of the Empire and before the emergence of the First Order, we follow the travails of a lone gunfighter in the outer reaches of the galaxy far from the authority of the New Republic."
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptionDetailFragmentTV" />
@@ -67,6 +95,7 @@
         android:layout_height="@dimen/_30sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:layout_marginRight="@dimen/_20sdp"
+        android:contentDescription="@string/star"
         android:src="@drawable/ic_star_black_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,15 +105,15 @@
         android:id="@+id/titleMovieDetailFragmentTV"
         android:layout_width="@dimen/_150sdp"
         android:layout_height="wrap_content"
-        android:text="Rick and Morty"
-        android:textSize="@dimen/_16ssp"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginStart="@dimen/_10ssp"
+        android:layout_marginLeft="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="Rick and Morty"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/posterDetailFragmentIV"
-        app:layout_constraintTop_toTopOf="@+id/posterDetailFragmentIV"
-        android:layout_marginLeft="@dimen/_10ssp" />
+        app:layout_constraintTop_toTopOf="@+id/posterDetailFragmentIV" />
 
     <TextView
         android:id="@+id/dateMovieDetailFragmentTV"
@@ -100,13 +129,48 @@
         android:id="@+id/voteDetailFragmentTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/vote"
-        android:textSize="@dimen/_18ssp"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
         android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:text="@string/vote"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_18ssp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
-        android:layout_marginRight="@dimen/_10sdp" />
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/progressBarHolderLoginCL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.4"
+        android:animateLayoutChanges="true"
+        android:background="#000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/loginPB"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/labelProgressLoginTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:text="Loading..."
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loginPB" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

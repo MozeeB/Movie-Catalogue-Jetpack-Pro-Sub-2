@@ -24,8 +24,9 @@ class TvShowsViewModel (val repository: TvShowsRepository) : BaseViewModel(){
                 .subscribe({ result ->
                     if (result.isNotEmpty()){
                         tvShowsState.value = TvShowDataLoaded(result)
-                        EspressoIdlingResource.decrement()
-
+                        if (!EspressoIdlingResource.getEspressoIdlingResource()?.isIdleNow!!) {
+                            EspressoIdlingResource.decrement()
+                        }
                     }
                 }, this::onError)
         )

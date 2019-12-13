@@ -24,7 +24,7 @@ class TvShowsItemView(private val tvShowDomain: TvShowDomain) : Item() {
 
         viewHolder.itemView.setOnClickListener {
             val bundle = bundleOf("idTvShow" to tvShowDomain.id)
-            it.findNavController().navigate(R.id.action_navigation_tvshows_to_detailActivity, bundle)
+            it.findNavController().navigate(R.id.action_navigation_tvshows_to_detailTvShowsActivity, bundle)
 
         }
 

@@ -31,6 +31,8 @@ class MoviesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        progressBarHolderLoginCL.visibility = View.VISIBLE
+
         vm.moviesState.observe(this, startObserver)
         vm.getMovies()
 
@@ -47,10 +49,11 @@ class MoviesFragment : Fragment() {
                 adapterMovies.clear()
                 movieState.moviesDomain.map {
                     adapterMovies.add(MoviesItemView(it))
+                    progressBarHolderLoginCL.visibility = View.GONE
                 }
             }
             is ErrorState ->{
-
+                progressBarHolderLoginCL.visibility = View.GONE
             }
         }
     }

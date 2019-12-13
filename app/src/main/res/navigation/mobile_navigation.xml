@@ -21,13 +21,30 @@
         android:label="@string/title_tvshows"
         tools:layout="@layout/fragment_tvshows" >
         <action
-            android:id="@+id/action_navigation_tvshows_to_detailActivity"
-            app:destination="@id/detailActivity" />
+            android:id="@+id/action_navigation_tvshows_to_detailTvShowsActivity"
+            app:destination="@id/detailTvShowsActivity" />
     </fragment>
     <activity
         android:id="@+id/detailActivity"
-        android:name="com.example.moviecataloguejetpackprosub2.ui.detail.DetailActivity"
+        android:name="com.example.moviecataloguejetpackprosub2.ui.detail.movies.DetailMoviesActivity"
         android:label="activity_detail"
-        tools:layout="@layout/activity_detail" />
+        tools:layout="@layout/activity_detail_movies" />
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="com.example.moviecataloguejetpackprosub2.ui.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailActivity"
+            app:destination="@id/detailActivity" />
+        <action
+            android:id="@+id/action_navigation_favorite_to_detailTvShowsActivity"
+            app:destination="@id/detailTvShowsActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/detailTvShowsActivity"
+        android:name="com.example.moviecataloguejetpackprosub2.ui.detail.tvshows.DetailTvShowsActivity"
+        android:label="activity_detail_tv_shows"
+        tools:layout="@layout/activity_detail_tv_shows" />
 
 </navigation>

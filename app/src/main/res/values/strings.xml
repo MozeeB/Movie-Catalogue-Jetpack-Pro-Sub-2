@@ -11,4 +11,11 @@
     <string name="description">DESCRIPTION</string>
     <string name="datetime">2019-11-12</string>
     <string name="vote">7.5</string>
+    <string name="favorite">FAVORITE</string>
+    <string name="back">back</string>
+    <string name="poster">poster</string>
+    <string name="background">background</string>
+    <string name="star">star</string>
+    <string name="love">love</string>
+    <string name="favorite_tidak_ditemukan">Favorite tidak ditemukan</string>
 </resources>

@@ -31,6 +31,7 @@ class TvShowsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        progressBarHolderLoginCL.visibility = View.VISIBLE
         vm.tvShowsState.observe(this, startObserver)
         vm.getTvShows()
 
@@ -47,9 +48,12 @@ class TvShowsFragment : Fragment() {
                 adapterTvShows.clear()
                 tvShowsState.tvShowDomain.map {
                     adapterTvShows.add(TvShowsItemView(it))
+                    progressBarHolderLoginCL.visibility = View.GONE
+
                 }
             }
             is ErrorState ->{
+                progressBarHolderLoginCL.visibility = View.GONE
 
             }
         }

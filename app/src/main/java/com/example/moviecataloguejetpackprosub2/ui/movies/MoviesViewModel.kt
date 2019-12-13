@@ -24,7 +24,9 @@ class MoviesViewModel (val repository: MoviesRepository) : BaseViewModel(){
                 .subscribe({ result ->
                     if (result.isNotEmpty()){
                         moviesState.value = MovieDataLoaded(result)
-                        EspressoIdlingResource.decrement()
+                        if (!EspressoIdlingResource.getEspressoIdlingResource()?.isIdleNow!!) {
+                            EspressoIdlingResource.decrement()
+                        }
 
                     }
                 }, this::onError)

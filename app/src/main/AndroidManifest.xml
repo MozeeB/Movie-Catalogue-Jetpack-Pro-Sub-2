@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.detail.DetailActivity"></activity>
+        <activity android:name=".ui.detail.tvshows.DetailTvShowsActivity"></activity>
+        <activity android:name=".ui.detail.movies.DetailMoviesActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

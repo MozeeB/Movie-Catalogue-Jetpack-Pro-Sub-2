@@ -34,10 +34,8 @@ class MainActivityTest{
     @Test
     fun toMovieActivityTest() {
         Espresso.onView(withId(R.id.navigation_movies)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Thread.sleep(2000)
         Espresso.onView(withId(R.id.navigation_movies)).perform(ViewActions.click())
         Espresso.onView(withId(R.id.moviesFragmentRV)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Thread.sleep(2000)
         Espresso.onView(withId(R.id.moviesFragmentRV)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(2))
         Espresso.onView(withId(R.id.moviesFragmentRV)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
@@ -46,15 +44,11 @@ class MainActivityTest{
             )
         )
         Espresso.onView(withId(R.id.dateMovieDetailFragmentTV)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Thread.sleep(2000)
         Espresso.pressBack()
 
-        Thread.sleep(1000)
         Espresso.onView(withId(R.id.navigation_tvshows)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Thread.sleep(2000)
         Espresso.onView(withId(R.id.navigation_tvshows)).perform(ViewActions.click())
         Espresso.onView(withId(R.id.tvshowsFragmentRV)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Thread.sleep(2000)
         Espresso.onView(withId(R.id.tvshowsFragmentRV)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(2))
         Espresso.onView(withId(R.id.tvshowsFragmentRV)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
@@ -63,7 +57,6 @@ class MainActivityTest{
             )
         )
         Espresso.onView(withId(R.id.dateMovieDetailFragmentTV)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Thread.sleep(2000)
         Espresso.pressBack()
 
 
