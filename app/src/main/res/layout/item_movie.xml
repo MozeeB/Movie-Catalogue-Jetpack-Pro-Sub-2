@@ -64,7 +64,7 @@
                 android:id="@+id/movie_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Elsa, Anna, Kristoff and Olaf head far into the forest to learn the truth about an ancient mystery of their kingdom"
+                android:text="@string/elsa_anna_kristoff_and_olaf_head_far_into_the_forest_to_learn_the_truth_about_an_ancient_mystery_of_their_kingdom"
                 android:maxLength="150"
                 android:ellipsize="end"
                 android:maxLines="7"
