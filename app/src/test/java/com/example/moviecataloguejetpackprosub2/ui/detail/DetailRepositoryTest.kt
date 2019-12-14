@@ -1,6 +1,5 @@
 package com.example.moviecataloguejetpackprosub2.ui.detail
 
-import com.example.moviecataloguejetpackprosub2.BuildConfig
 import com.example.moviecataloguejetpackprosub2.data.mapper.DetailMovieMapper
 import com.example.moviecataloguejetpackprosub2.data.mapper.DetailTvShowMapper
 import com.example.moviecataloguejetpackprosub2.data.model.DetaiMovielModel
@@ -34,6 +33,7 @@ class DetailRepositoryTest {
             .thenReturn(
                 Single.just(
                     DetaiMovielModel(
+                        1,
                         "/vZiqhw6oFoMlHSneIdVip9rRou2.jpg",
                         "Frozen II",
                         "Elsa, Anna, Kristoff and Olaf head far into the forest to learn the truth about an ancient mystery of their kingdom.",
@@ -55,6 +55,7 @@ class DetailRepositoryTest {
             .thenReturn(
                 Single.just(
                     DetailTvShowModel(
+                        1,
                         "/o7qi2v4uWQ8bZ1tW3KI0Ztn2epk.jpg",
                         "2019-11-12",
                         "The Mandalorian",

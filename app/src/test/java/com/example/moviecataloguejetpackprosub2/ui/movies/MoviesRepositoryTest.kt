@@ -31,7 +31,7 @@ class MoviesRepositoryTest {
 
     @Test
     fun getMovies() {
-        Mockito.`when`(globalService.getMovies(BuildConfig.API_KEY, MOVIE.LANG, MOVIE.SORT_BY))
+        Mockito.`when`(globalService.getMovies(BuildConfig.API_KEY, MOVIE.LANG, MOVIE.SORT_BY, 1))
             .thenReturn(
                 Single.just(
                     TopMoviesResponse(
@@ -61,7 +61,7 @@ class MoviesRepositoryTest {
                     "2019-11-01"
                 )
             )
-        repositoryImpl.getMovies(BuildConfig.API_KEY, MOVIE.LANG, MOVIE.SORT_BY)
+        repositoryImpl.getMovies(BuildConfig.API_KEY, MOVIE.LANG, MOVIE.SORT_BY, 1)
             .test()
             .assertComplete()
             .awaitDone(10, TimeUnit.SECONDS)

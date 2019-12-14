@@ -12,9 +12,10 @@ class MoviesRepositoryImpl(
     override fun getMovies(
         apiKey: String,
         language: String,
-        shortBy: String
+        shortBy: String,
+        page:Int
     ): Single<List<MoviesDomain>> {
-        return service.getMovies(apiKey, language, shortBy).map {
+        return service.getMovies(apiKey, language, shortBy, page).map {
             moviesMapper.mapToListDomain(it.results)
         }
     }

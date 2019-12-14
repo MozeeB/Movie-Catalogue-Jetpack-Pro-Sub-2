@@ -14,12 +14,14 @@ interface GlobalService {
     @GET("3/discover/movie")
     fun getMovies(@Query("api_key") api_key: String,
                   @Query("language") language: String,
-                  @Query("sort_by") sort_by: String): Single<TopMoviesResponse>
+                  @Query("sort_by") sort_by: String,
+                  @Query("page") page : Int): Single<TopMoviesResponse>
 
     @GET("3/discover/tv")
     fun getTvShow(@Query("api_key") api_key: String,
                   @Query("language") language: String,
-                  @Query("sort_by") sort_by: String) : Single<TopTvShowResponse>
+                  @Query("sort_by") sort_by: String,
+                  @Query("page") page:Int) : Single<TopTvShowResponse>
 
     @GET("3/movie/{movie_id}")
     fun getDetailMovies(@Path("movie_id") movie_id: String,

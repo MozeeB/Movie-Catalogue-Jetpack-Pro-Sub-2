@@ -3,17 +3,13 @@ package com.example.moviecataloguejetpackprosub2.ui.tvshows
 import com.example.moviecataloguejetpackprosub2.BuildConfig
 import com.example.moviecataloguejetpackprosub2.data.mapper.TvShowsMapper
 import com.example.moviecataloguejetpackprosub2.data.model.TvShowModel
-import com.example.moviecataloguejetpackprosub2.data.repository.TvShowsRepository
 import com.example.moviecataloguejetpackprosub2.data.repository.TvShowsRepositoryImpl
 import com.example.moviecataloguejetpackprosub2.data.response.TopTvShowResponse
 import com.example.moviecataloguejetpackprosub2.data.service.GlobalService
-import com.example.moviecataloguejetpackprosub2.domain.TvShowDomain
 import com.example.moviecataloguejetpackprosub2.helper.MOVIE
 import io.reactivex.Single
-import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import java.util.concurrent.TimeUnit
@@ -32,7 +28,7 @@ class TvShowsViewModelTest{
 
     @Test
     fun getTvShows(){
-        Mockito.`when`(globalService.getTvShow(BuildConfig.API_KEY, MOVIE.LANG, MOVIE.SORT_BY))
+        Mockito.`when`(globalService.getTvShow(BuildConfig.API_KEY, MOVIE.LANG, MOVIE.SORT_BY, 1))
             .thenReturn(
                 Single.just(
                     TopTvShowResponse(
@@ -62,7 +58,7 @@ class TvShowsViewModelTest{
                     "/qJdfO3ahgAMf2rcmhoqngjBBZW1.jpg"
                 )
             )
-        repositoryImpl.getTvShows(BuildConfig.API_KEY, MOVIE.LANG, MOVIE.SORT_BY)
+        repositoryImpl.getTvShows(BuildConfig.API_KEY, MOVIE.LANG, MOVIE.SORT_BY, 1)
             .test()
             .assertComplete()
             .awaitDone(10, TimeUnit.SECONDS)

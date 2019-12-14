@@ -34,4 +34,5 @@ class FavMoviesVM (val moviesDao: MoviesDao, val executor: Executor) : BaseViewM
         favMoviesState.value = ErrorState(error.localizedMessage)
     }
 
+
 }

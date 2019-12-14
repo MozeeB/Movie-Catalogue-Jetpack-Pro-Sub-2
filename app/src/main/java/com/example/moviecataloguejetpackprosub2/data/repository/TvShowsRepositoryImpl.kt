@@ -12,9 +12,10 @@ class TvShowsRepositoryImpl(
     override fun getTvShows(
         apiKey: String,
         language: String,
-        shortBy: String
+        shortBy: String,
+        page:Int
     ): Single<List<TvShowDomain>> {
-        return service.getTvShow(apiKey, language, shortBy).map {
+        return service.getTvShow(apiKey, language, shortBy, page).map {
             tvShowsMapper.mapToListDomain(it.results)
         }
     }

@@ -37,6 +37,7 @@ object FakeData {
 
     fun getMovieDetail(): DetaiMovielModel? {
         return DetaiMovielModel(
+            1,
             "/vZiqhw6oFoMlHSneIdVip9rRou2.jpg",
             "Frozen II",
             "Elsa, Anna, Kristoff and Olaf head far into the forest to learn the truth about an ancient mystery of their kingdom.",
@@ -75,6 +76,7 @@ object FakeData {
 
     fun getTvShowsDetail(): DetailTvShowModel? {
         return DetailTvShowModel(
+            1,
             "/o7qi2v4uWQ8bZ1tW3KI0Ztn2epk.jpg",
             "2019-11-12",
             "The Mandalorian",
