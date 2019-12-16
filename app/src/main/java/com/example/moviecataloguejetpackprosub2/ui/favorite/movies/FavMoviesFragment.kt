@@ -10,9 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.moviecataloguejetpackprosub2.R
-import com.example.moviecataloguejetpackprosub2.helper.view.FavMoviesItemView
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
+import com.example.moviecataloguejetpackprosub2.helper.Status
+import com.example.moviecataloguejetpackprosub2.helper.toast
 import kotlinx.android.synthetic.main.fragment_fav_movies.*
 import org.koin.android.ext.android.inject
 
@@ -22,8 +21,6 @@ import org.koin.android.ext.android.inject
 class FavMoviesFragment : Fragment() {
 
     private val vm:FavMoviesVM by inject()
-
-    private val adapterFavMovies = GroupAdapter<ViewHolder>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,50 +34,32 @@ class FavMoviesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         progressBarHolderLoginCL.visibility = View.VISIBLE
-        vm.favMoviesState.observe(this, starObserver)
+        val movieAdapter = FavMovieAdapter(context)
 
-        if (savedInstanceState == null){
-            adapterFavMovies.clear()
-            vm.getFavMovies()
-        }else{
-            vm.getFavMovies()
-        }
+        vm.getMoviesPage.observe(viewLifecycleOwner, Observer { response ->
+            if (response != null) {
+                when (response.status) {
+                    Status.LOADING -> {
+
+                    }
+                    Status.SUCCESS -> {
+                        progressBarHolderLoginCL.visibility = View.GONE
+                        movieAdapter.submitList(response.data)
+                        movieAdapter.notifyDataSetChanged()
+                    }
+                    Status.ERROR -> {
+                        progressBarHolderLoginCL.visibility = View.GONE
+                        toast( context!!,getString(R.string.error))
+                    }
+                }
+            }
+        })
+
 
         favMoviesRV.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = adapterFavMovies
+            adapter = movieAdapter
         }
 
     }
-
-    private val starObserver = Observer<FavMoviesState>{ moviesState ->
-        when(moviesState){
-            is FavMoviesDataLoaded ->{
-                noFoundMoviesTV.visibility = View.GONE
-                adapterFavMovies.clear()
-                moviesState.movieDomain.map {
-                    adapterFavMovies.add(FavMoviesItemView(it))
-                }
-                progressBarHolderLoginCL.visibility = View.GONE
-
-
-            }
-            is NoDataFound ->{
-                progressBarHolderLoginCL.visibility = View.GONE
-                noFoundMoviesTV.visibility = View.VISIBLE
-
-            }
-            is ErrorState ->{
-                progressBarHolderLoginCL.visibility = View.GONE
-
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        vm.getFavMovies()
-
-    }
-
 }

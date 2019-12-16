@@ -1,5 +1,6 @@
 package com.example.moviecataloguejetpackprosub2.data.database.dao
 
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -21,4 +22,7 @@ interface TvShowDao {
 
     @Query("DELETE from tb_tvshow where id=:idTvShows ")
     fun removeTvShows(idTvShows: Int)
+
+    @Query("SELECT * FROM tb_tvshow ORDER BY id ASC")
+    fun getFavMoviesPagination() : DataSource.Factory<Int, DetailTvShowDomain>
 }

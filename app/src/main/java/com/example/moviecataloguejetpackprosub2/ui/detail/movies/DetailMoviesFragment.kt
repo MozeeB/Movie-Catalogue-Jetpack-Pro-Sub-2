@@ -54,6 +54,7 @@ class DetailMoviesFragment : Fragment(), View.OnClickListener {
         }
 
         favLoveFragmentDetailIB.setOnClickListener(this)
+        backFragmentDetailIV.setOnClickListener(this)
 
 
     }
@@ -126,6 +127,9 @@ class DetailMoviesFragment : Fragment(), View.OnClickListener {
                 } else {
                     moviesVm.removeMovieFav(datamovie!!.id)
                 }
+            }
+            R.id.backFragmentDetailIV ->{
+                activity?.onBackPressed()
             }
 
         }

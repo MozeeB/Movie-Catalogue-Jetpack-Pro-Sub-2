@@ -6,14 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.moviecataloguejetpackprosub2.R
+import com.example.moviecataloguejetpackprosub2.helper.Status
 import com.example.moviecataloguejetpackprosub2.helper.toast
-import com.example.moviecataloguejetpackprosub2.helper.view.FavTvShowsItemView
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_fav_tv_shows.*
 import org.koin.android.ext.android.inject
 
@@ -23,7 +22,6 @@ import org.koin.android.ext.android.inject
 class FavTvShowsFragment : Fragment() {
 
     private val vm:FavTvShowsVM by inject()
-    private val adapterFavtvShows = GroupAdapter<ViewHolder>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,50 +35,35 @@ class FavTvShowsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         progressBarHolderLoginCL.visibility = View.VISIBLE
-        vm.favMoviesState.observe(this, startObserver)
+        val tvshowAdapter = FavTvShowsAdapter(context)
 
-        if (savedInstanceState == null){
-            adapterFavtvShows.clear()
-            vm.getFavTvShows()
-        }else{
-            vm.getFavTvShows()
-        }
+
+        vm.getTvShowsPage.observe(viewLifecycleOwner, Observer { response ->
+            if (response != null) {
+                when (response.status) {
+                    Status.LOADING -> {
+
+                    }
+                    Status.SUCCESS -> {
+                        progressBarHolderLoginCL.visibility = View.GONE
+                        tvshowAdapter.submitList(response.data)
+                        tvshowAdapter.notifyDataSetChanged()
+                    }
+                    Status.ERROR -> {
+                        progressBarHolderLoginCL.visibility = View.GONE
+                        toast( context!!,getString(R.string.error))
+                    }
+                }
+            }
+        })
+
 
         favTvshowsRV.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = adapterFavtvShows
+            adapter = tvshowAdapter
         }
 
     }
 
-    private val startObserver = Observer<FavTvShowsState>{ detailState ->
-        when(detailState){
-            is FavMoviesDataLoaded ->{
-                noFoundTV.visibility = View.GONE
-                adapterFavtvShows.clear()
-                detailState.movieDomain.map {
-                    adapterFavtvShows.add(FavTvShowsItemView(it))
-                }
-
-                progressBarHolderLoginCL.visibility = View.GONE
-
-            }
-            is NoDataFound ->{
-                progressBarHolderLoginCL.visibility = View.GONE
-                noFoundTV.visibility = View.VISIBLE
-            }
-            is ErrorState ->{
-                toast(context!!, "Terjadi kesalahan!")
-                progressBarHolderLoginCL.visibility = View.VISIBLE
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        adapterFavtvShows.clear()
-        vm.getFavTvShows()
-
-    }
 
 }

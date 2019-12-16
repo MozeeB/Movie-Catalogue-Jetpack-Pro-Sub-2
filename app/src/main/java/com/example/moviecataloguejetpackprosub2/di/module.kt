@@ -9,6 +9,7 @@ import com.example.moviecataloguejetpackprosub2.data.mapper.TvShowsMapper
 import com.example.moviecataloguejetpackprosub2.data.repository.*
 import com.example.moviecataloguejetpackprosub2.data.service.GlobalInterceptor
 import com.example.moviecataloguejetpackprosub2.data.service.GlobalService
+import com.example.moviecataloguejetpackprosub2.helper.AppExecutors
 import com.example.moviecataloguejetpackprosub2.helper.LOCAL
 import com.example.moviecataloguejetpackprosub2.helper.MOVIE
 import com.example.moviecataloguejetpackprosub2.ui.detail.movies.DetailMoviesVM
@@ -50,15 +51,19 @@ val dataModule = module {
 
 
     single { getExecutor() }
+    single { AppExecutors() }
 
     //db dao
     single { get<AppDatabase>().moviesDao() }
     single { get<AppDatabase>().tvshowDao() }
 
     //repository
-    single { MoviesRepositoryImpl(get(), get()) as MoviesRepository }
-    single { TvShowsRepositoryImpl(get(), get()) as TvShowsRepository }
+    single { MoviesRepositoryImpl(get(), get(), get(), get()) as MoviesRepository }
+    single { TvShowsRepositoryImpl(get(), get(), get(), get()) as TvShowsRepository }
     single { DetailRepositoryImpl(get(), get(), get()) as DetailRepository }
+
+    single { MoviesRepositoryImpl(get(), get(), get(), get()) }
+    single { TvShowsRepositoryImpl(get(), get(), get(), get()) }
 
     //mapper
     single { MoviesMapper() }

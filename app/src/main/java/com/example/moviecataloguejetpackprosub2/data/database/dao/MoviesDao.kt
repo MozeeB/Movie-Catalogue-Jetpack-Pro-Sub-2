@@ -22,7 +22,7 @@ interface MoviesDao {
     @Query("DELETE from tb_movies where id=:idMovie ")
     fun removeMovie(idMovie: Int)
 
-//    @Query("SELECT * FROM tb_movies")
-//    fun getFavMoviesPagination() : DataSource.Factory<Int, DetailMovieDomain>
+    @Query("SELECT * FROM tb_movies ORDER BY id ASC")
+    fun getFavMoviesPagination() : DataSource.Factory<Int, DetailMovieDomain>
 
 }
