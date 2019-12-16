@@ -76,8 +76,8 @@ val dataModule = module {
             get()
         )
     }
-    viewModel { FavMoviesVM(get(), get()) }
-    viewModel { FavTvShowsVM(get(), get()) }
+    viewModel { FavMoviesVM(get()) }
+    viewModel { FavTvShowsVM(get()) }
     viewModel { DetailTvShowsVM(get(), get(), get()) }
 
 }
