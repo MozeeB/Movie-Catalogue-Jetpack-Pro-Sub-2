@@ -10,6 +10,11 @@ import io.reactivex.Single
 
 @Dao
 interface MoviesDao {
+    
+    fun pakdeLoveAmmar() {
+        
+    }
+    
     @Query("SELECT * FROM tb_movies")
     fun  getFavMovies() : Single<List<DetailMovieDomain>>
 
