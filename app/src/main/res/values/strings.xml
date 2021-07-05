@@ -2,4 +2,23 @@
     <string name="app_name">Movie Catalogue</string>
     <string name="title_movies">MOVIES</string>
     <string name="title_tvshows">TV SHOWS</string>
+    <string name="listimage">listImage</string>
+    <string name="date">date</string>
+    <string name="frozen_ii">Frozen II</string>
+
+    <string name="description">DESCRIPTION</string>
+    <string name="datetime">2019-11-12</string>
+    <string name="vote">7.5</string>
+    <string name="favorite">FAVORITE</string>
+    <string name="back">back</string>
+    <string name="poster">poster</string>
+    <string name="background">background</string>
+    <string name="star">star</string>
+    <string name="love">love</string>
+    <string name="favorite_tidak_ditemukan">Favorite tidak ditemukan</string>
+    <string name="set_after_the_fall_of_the_empire_and_before_the_emergence_of_the_first_order_we_follow_the_travails_of_a_lone_gunfighter_in_the_outer_reaches_of_the_galaxy_far_from_the_authority_of_the_new_republic">Set after the fall of the Empire and before the emergence of the First Order, we follow the travails of a lone gunfighter in the outer reaches of the galaxy far from the authority of the New Republic.</string>
+    <string name="rick_and_morty">Rick and Morty</string>
+    <string name="loading">Loading...</string>
+    <string name="elsa_anna_kristoff_and_olaf_head_far_into_the_forest_to_learn_the_truth_about_an_ancient_mystery_of_their_kingdom">Elsa, Anna, Kristoff and Olaf head far into the forest to learn the truth about an ancient mystery of their kingdom</string>
+    <string name="error">There is an error</string>
 </resources>
